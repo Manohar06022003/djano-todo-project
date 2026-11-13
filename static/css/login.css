@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #146fca;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* Login box */
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+
+    color: #333;
+    font-size: 30px;
+}
+
+/* Labels */
+
+.login-container label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #333;
+    font-weight: bold;
+}
+
+/* Input fields */
+
+.login-container input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+/* Input focus */
+
+.login-container input:focus {
+    border-color: #146fca;
+}
+
+/* Login button */
+
+.login-container button {
+    width: 100%;
+
+    padding: 13px;
+
+    background: #146fca;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* Button hover */
+
+.login-container button:hover {
+    background: #0d5da8;
+}
+
+/* Error message */
+
+.error-message {
+    background: #ffe5e5;
+    color: #d00000;
+
+    padding: 10px;
+
+    margin-bottom: 20px;
+
+    border-radius: 5px;
+
+    text-align: center;
+}
+
+/* Signup text */
+
+.signup-text {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #555;
+}
+
+.signup-text a {
+    color: #146fca;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------- */
+/* Mobile */
+/* ----------------------- */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .login-container h1 {
+        font-size: 25px;
+    }
+
+    .login-container input {
+        padding: 12px;
+    }
+
+    .login-container button {
+        padding: 12px;
+    }
+}

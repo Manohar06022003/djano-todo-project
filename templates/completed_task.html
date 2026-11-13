@@ -1,0 +1,163 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bella | Completed Tasks</title>
+
+    <link rel="stylesheet" href="{% static 'css/completed_task.css' %}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- Header -->
+        <header class="page-header">
+
+            <div class="header-left">
+                <div class="logo">B</div>
+
+                <div>
+                    <h1>Bella</h1>
+                    <p class="subtitle">Your personal task manager</p>
+                </div>
+            </div>
+
+            <!-- <a href="{% url 'dashboard_views' %}" class="dashboard-btn">
+                ← Back to Dashboard
+            </a> -->
+
+        </header>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <section class="welcome-section">
+
+                <div>
+                    <span class="section-label">YOUR PROGRESS</span>
+
+                    <h2>Completed Tasks</h2>
+
+                    <p class="description">
+                        Every completed task is a step forward.
+                        Keep up the great work!
+                    </p>
+                </div>
+
+                <div class="count-card">
+                    <span class="count-icon">✓</span>
+
+                    <div>
+                        <p>Completed</p>
+                        <h3>{{ completed_task_count }}</h3>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- Action Buttons -->
+            <div class="action-bar">
+
+                <h3>Your Achievements</h3>
+
+                <a href="{% url 'add_task' %}" class="add-task-btn">
+                    + Add New Task
+                </a>
+
+            </div>
+
+
+            <!-- Completed Task List -->
+            <section class="task-list">
+
+                {% for task in completed_tasks %}
+
+                    <article class="task-card">
+
+                        <div class="task-check">
+                            ✓
+                        </div>
+
+                        <div class="task-details">
+
+                            <h4>{{ task.title }}</h4>
+
+                            <p>
+                                {% if task.description %}
+                                    {{ task.description }}
+                                {% else %}
+                                    No description added.
+                                {% endif %}
+                            </p>
+
+                            <span class="completed-badge">
+                                ✓ Completed
+                            </span>
+
+                        </div>
+
+                        <div class="task-actions">
+
+                            <form method="POST"
+                                action="{% url 'toggle_task' task.id %}">
+                                  
+
+                                {% csrf_token %}
+
+                                <input type="hidden" name="next" value="completed_tasks">
+
+                                <button type="submit" class="pending-btn">
+                                    ↩ Mark as Pending
+                                </button>
+
+                            </form> 
+
+                        </div> 
+
+                    </article>
+
+                {% empty %}
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">✓</div>
+
+                        <h3>No completed tasks yet</h3>
+
+                        <p>
+                            Complete a task from your dashboard,
+                            and it will appear here.
+                        </p>
+
+                        <a href="{% url 'dashboard_views' %}"
+                           class="empty-dashboard-btn">
+                            Go to Dashboard
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <p>Bella &copy; 2026 — One task at a time.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+

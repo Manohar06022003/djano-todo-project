@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+
+    <link rel="stylesheet"
+          href="{% static 'css/add_task.css' %}">
+
+    <title>Bella | Add Task</title>
+
+</head>
+
+<body>
+
+<div class="add-task-page">
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <div>
+            <h1>📝 Add New Task</h1>
+            <p>Create a new task for your daily activities.</p>
+        </div>
+
+        <a href="{% url 'dashboard_views' %}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- ADD TASK CARD -->
+
+    <div class="task-form-card">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- TASK TITLE -->
+
+            <div class="form-group">
+
+                <label for="title">
+                    Task Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter your task title"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    placeholder="Describe your task..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- COMPLETED -->
+
+            <!-- <div class="completed-option">
+
+                <input
+                    type="checkbox"
+                    id="completed"
+                    name="completed"
+                >
+
+                <label for="completed">
+                    Mark this task as completed
+                </label>
+
+            </div> -->
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-actions">
+
+                <!-- <a href="{% url 'dashboard_views' %}"
+                   class="cancel-btn">
+                    Cancel
+                </a> -->
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="add_another"
+                    class="save-another-btn">
+                    Save & Add Another
+                </button>
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="save"
+                    class="save-btn">
+                    Save Task
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,389 @@
+
+ <!-- {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bella | Pending Tasks</title>
+
+    <link rel="stylesheet" href="{% static 'css/pending_task.css' %}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        
+        <header class="page-header">
+
+    <div class="header-left">
+
+        <div class="logo">B</div>
+
+       
+<header class="page-header">
+
+    <div class="header-left">
+
+        <div class="logo">B</div>
+
+        <div>
+            <h1>Bella</h1>
+            <p class="subtitle">Your personal task manager</p>
+        </div>
+
+    </div>
+
+    
+    <a href="{% url 'dashboard_views' %}"
+       class="back-dashboard-btn">
+        ← Back to Dashboard
+    </a>
+
+</header>
+
+
+        
+        <main class="main-content">
+
+           
+            <section class="welcome-section">
+
+                <div class="welcome-text">
+
+                    <span class="section-label">YOUR NEXT STEPS</span>
+
+                    <h2>Pending Tasks</h2>
+
+                    <p class="description">
+                        Every big achievement starts with a small step.
+                        Focus on your pending tasks and keep moving forward!
+                    </p>
+
+                </div>
+
+
+                
+                <div class="count-card">
+
+                    <span class="count-icon">○</span>
+
+                    <div>
+                        <p>Remaining</p>
+                        <h3>{{ pending_task_count }}</h3>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            
+            <div class="action-bar">
+
+                <div>
+                    <h3>Tasks To Complete</h3>
+                    <p class="action-subtitle">
+                        Stay focused and finish what you started.
+                    </p>
+                </div>
+
+                <a href="{% url 'add_task' %}" class="add-task-btn">
+                    + Add New Task
+                </a>
+
+            </div>
+
+
+            
+            <section class="task-list">
+
+                {% for task in pending_tasks %}
+
+                    <article class="task-card">
+
+                        
+                        <div class="task-check">
+                            ○
+                        </div>
+
+
+                        
+                        <div class="task-details">
+
+                            <h4>{{ task.title }}</h4>
+
+                            <p>
+                                {% if task.description %}
+                                    {{ task.description }}
+                                {% else %}
+                                    No description added.
+                                {% endif %}
+                            </p>
+
+                            <span class="pending-badge">
+                                ○ Pending
+                            </span>
+
+                        </div>
+
+
+                        
+                        <div class="task-actions">
+
+                            <form method="POST"
+                                  action="{% url 'toggle_task_completion' task.id %}">
+
+                                {% csrf_token %}
+
+                                <input type="hidden"
+                                       name="next"
+                                       value="pending_tasks">
+
+                                <button type="submit" class="complete-btn">
+                                    ✓ Mark as Completed
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </article>
+
+                {% empty %}
+
+                    
+                    <div class="empty-state">
+
+                        <div class="empty-icon">🎉</div>
+
+                        <h3>All Tasks Completed!</h3>
+
+                        <p>
+                            Amazing! You don't have any pending tasks.
+                            Enjoy your progress or add a new task to your list.
+                        </p>
+
+                        <a href="{% url 'add_task' %}"
+                           class="empty-dashboard-btn">
+                            + Add New Task
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </section>
+
+        </main>
+
+
+        
+        <footer class="page-footer">
+
+            <p>Bella &copy; 2026 — One task at a time.</p>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>  -->
+
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Bella | Pending Tasks</title>
+
+<link rel="stylesheet" href="{% static 'css/pending_task.css' %}?v=2">
+
+
+</head>
+
+<body>
+
+
+<div class="page-container">
+
+    <!-- Header -->
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <div class="logo">B</div>
+
+            <div>
+                <h1>Bella</h1>
+                <p class="subtitle">Your personal task manager</p>
+            </div>
+
+        </div>
+
+        <!-- Back to Dashboard Button -->
+        <a href="{% url 'dashboard_views' %}" class="back-dashboard-btn">
+            ← Back to Dashboard
+        </a>
+<!-- style="background: #5b4bdb; color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none;" -->
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+
+            <div class="welcome-text">
+
+                <span class="section-label">YOUR NEXT STEPS</span>
+
+                <h2>Pending Tasks</h2>
+
+                <p class="description">
+                    Every big achievement starts with a small step.
+                    Focus on your pending tasks and keep moving forward!
+                </p>
+
+            </div>
+
+
+            <!-- Pending Count Card -->
+            <div class="count-card">
+
+                <span class="count-icon">○</span>
+
+                <div>
+                    <p>Remaining</p>
+                    <h3>{{ pending_task_count }}</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+
+            <div>
+                <h3>Tasks To Complete</h3>
+
+                <p class="action-subtitle">
+                    Stay focused and finish what you started.
+                </p>
+            </div>
+
+            <a href="{% url 'add_task' %}" class="add-task-btn">
+                + Add New Task
+            </a>
+
+        </div>
+
+
+        <!-- Pending Task List -->
+        <section class="task-list">
+
+            {% for task in pending_tasks %}
+
+                <article class="task-card">
+
+                    <!-- Pending Icon -->
+                    <div class="task-check">
+                        ○
+                    </div>
+
+
+                    <!-- Task Details -->
+                    <div class="task-details">
+
+                        <h4>{{ task.title }}</h4>
+
+                        <p>
+                            {% if task.description %}
+                                {{ task.description }}
+                            {% else %}
+                                No description added.
+                            {% endif %}
+                        </p>
+
+                        <span class="pending-badge">
+                            ○ Pending
+                        </span>
+
+                    </div>
+
+
+                    <!-- Task Action -->
+                    <div class="task-actions">
+
+                        <form method="POST"
+                              action="{% url 'toggle_task_completion' task.id %}">
+
+                            {% csrf_token %}
+
+                            <input type="hidden"
+                                   name="next"
+                                   value="pending_tasks">
+
+                            <button type="submit" class="complete-btn">
+                                ✓ Mark as Completed
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <!-- Empty State -->
+                <div class="empty-state">
+
+                    <div class="empty-icon">🎉</div>
+
+                    <h3>All Tasks Completed!</h3>
+
+                    <p>
+                        Amazing! You don't have any pending tasks.
+                        Enjoy your progress or add a new task to your list.
+                    </p>
+
+                    <a href="{% url 'add_task' %}"
+                       class="empty-dashboard-btn">
+                        + Add New Task
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="page-footer">
+
+        <p>Bella &copy; 2026 — One task at a time.</p>
+
+    </footer>
+
+</div>
+
+
+</body>
+</html>
+
